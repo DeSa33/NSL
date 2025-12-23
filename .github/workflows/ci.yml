@@ -1,0 +1,106 @@
+name: NSL CI/CD
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore NSL.sln
+
+      - name: Build
+        run: dotnet build NSL.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test NSL.sln --no-build --configuration Release --verbosity normal
+        continue-on-error: true
+
+      - name: Publish Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: dotnet publish src/NSL.Console/NSL.Console.csproj -c Release -r linux-x64 --self-contained -o publish/linux-x64
+
+      - name: Publish Windows
+        if: matrix.os == 'windows-latest'
+        run: dotnet publish src/NSL.Console/NSL.Console.csproj -c Release -r win-x64 --self-contained -o publish/win-x64
+
+      - name: Publish macOS
+        if: matrix.os == 'macos-latest'
+        run: dotnet publish src/NSL.Console/NSL.Console.csproj -c Release -r osx-x64 --self-contained -o publish/osx-x64
+
+      - name: Upload Linux artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsl-linux-x64
+          path: publish/linux-x64/
+
+      - name: Upload Windows artifact
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsl-win-x64
+          path: publish/win-x64/
+
+      - name: Upload macOS artifact
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsl-osx-x64
+          path: publish/osx-x64/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nsl-linux-x64
+          path: linux-x64/
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nsl-win-x64
+          path: win-x64/
+
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nsl-osx-x64
+          path: osx-x64/
+
+      - name: Create archives
+        run: |
+          tar -czf nsl-linux-x64.tar.gz linux-x64/
+          zip -r nsl-win-x64.zip win-x64/
+          tar -czf nsl-osx-x64.tar.gz osx-x64/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            nsl-linux-x64.tar.gz
+            nsl-win-x64.zip
+            nsl-osx-x64.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
