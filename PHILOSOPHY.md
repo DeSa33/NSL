@@ -18,14 +18,14 @@ NSL is:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    NSL (Control Plane)                   │
+│                    NSL (Control Plane)                  │
 │  • Orchestration    • Simulation    • Judgment          │
 │  • Reversibility    • Coordination  • Safety            │
 └────────────┬────────────────────────────────────────────┘
              │ coordinates
              ▼
 ┌─────────────────────────────────────────────────────────┐
-│              Native Systems (Execution Plane)            │
+│              Native Systems (Execution Plane)           │
 │  • Rendering    • Physics    • ML Kernels   • I/O       │
 │  • Hot loops    • GPU ops    • Memory mgmt  • Drivers   │
 └─────────────────────────────────────────────────────────┘
