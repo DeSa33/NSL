@@ -242,8 +242,9 @@ This makes NSL operators behave like **neural network layers** with persistent w
 /* Multi-line comment
    spanning multiple lines */
 
-# IMPORTANT: // is integer division, NOT a comment!
-let result = 10 // 3    # This equals 3 (integer division)
+# NOTE: Integer division (//) is planned but not yet implemented
+# For now, use math.floor() for integer division:
+let result = math.floor(10 / 3)    # Returns 3
 ```
 
 ---
@@ -442,8 +443,11 @@ fn add(a, b) {
 }
 
 # Default parameters
-fn greet(name, greeting = "Hello") {
-    return greeting + ", " + name + "!"
+# Default parameters (coming soon)
+# For now, use null coalescing:
+fn greet(name, greeting) {
+    let g = greeting ?? "Hello"
+    return g + ", " + name + "!"
 }
 
 # Higher-order functions
@@ -469,6 +473,8 @@ print(add5(10))  # 15
 ---
 
 ## Pattern Matching
+
+> ⚠️ **Coming Soon** - Pattern matching syntax is designed but not yet fully implemented. Use if/else chains for now.
 
 ```nsl
 # Basic match expression
@@ -1023,6 +1029,105 @@ let content3 = file.read("large-file.txt")  # Disk I/O, then cached
 - Safe: Auto-invalidates on write/append/delete
 - Efficient: LRU eviction prevents memory bloat
 
+
+## Simulation Mode (Dry-Run File Operations)
+
+NSL provides a simulation mode for safely previewing file changes before applying them.
+
+### Basic Usage
+
+```nsl
+# Start simulation mode
+sim.begin()
+
+# Use sim.write() to capture changes (NOT file.write())
+sim.write("config.txt", "new content")
+sim.write("data.json", '{"updated": true}')
+
+# Preview pending changes
+let pending = sim.pending()
+print("Pending changes:", pending)  # Shows count
+
+# View detailed diff
+let changes = sim.diff()
+for change in changes {
+    print("File:", change.path)
+    print("Operation:", change.operation)
+    print("Preview:", change.preview)
+}
+
+# Apply changes
+sim.commit()  # Writes all changes to disk
+
+# OR discard changes
+sim.rollback()  # Cancels all pending changes
+```
+
+### Important: Use sim.write(), NOT file.write()
+
+**INCORRECT:**
+```nsl
+sim.begin()
+file.write("test.txt", "content")  # ❌ This executes immediately!
+```
+
+**CORRECT:**
+```nsl
+sim.begin()
+sim.write("test.txt", "content")  # ✅ This is captured for preview
+```
+
+### Available Functions
+
+- `sim.begin()` - Start simulation mode
+- `sim.write(path, content)` - Queue a file write operation
+- `sim.append(path, content)` - Queue an append operation
+- `sim.delete(path)` - Queue a file deletion
+- `sim.pending()` - Get count of pending operations
+- `sim.diff()` - Get detailed list of pending changes
+- `sim.commit()` - Apply all pending changes to disk
+- `sim.rollback()` - Discard all pending changes
+
+### Example: Bulk File Updates
+
+```nsl
+# Preview changes to multiple files
+sim.begin()
+
+let files = glob.expand("*.txt", ".")
+for filePath in files {
+    let content = file.read(filePath)
+    let updated = string.replace(content, "old", "new")
+    sim.write(filePath, updated)
+}
+
+# Review what will change
+print("Will modify", sim.pending(), "files")
+let changes = sim.diff()
+for change in changes {
+    print("→", change.path)
+}
+
+# User confirms
+let response = input("Apply changes? (y/n): ")
+if response == "y" {
+    sim.commit()
+    print("✓ Changes applied")
+} else {
+    sim.rollback()
+    print("✗ Changes cancelled")
+}
+```
+
+### Use Cases
+
+- **Safe Refactoring**: Preview changes before applying
+- **Bulk Updates**: Review all changes at once
+- **Interactive Tools**: Let users approve changes
+- **Testing**: Verify operations without side effects
+
+
+
 ## Shell/Command Execution
 
 ### Running Commands
@@ -1107,6 +1212,40 @@ let pid = proc.id()
 ---
 
 ## HTTP & Network Operations
+
+### 🔓 Web Freedom: Direct Internet Access
+
+NSL's HTTP capabilities run **directly on the user's machine**, not through AI company servers. This means:
+
+| Traditional AI Web Access | NSL Web Access |
+|---------------------------|----------------|
+| AI → Company Servers → Filtered → Web | AI → NSL → User's PC → Web (direct) |
+| Company controls what AI can access | **User controls what AI can access** |
+| AI's requests use company's IP | AI's requests use **user's IP/VPN** |
+| Restricted, filtered, logged | Private, unrestricted, user-controlled |
+
+**Privacy Features:**
+- ✅ Respects your VPN (requests go through your VPN tunnel)
+- ✅ Uses your DNS settings
+- ✅ No AI company middleman
+- ✅ Your IP stays hidden if using VPN
+
+```nsl
+# Direct web access from user's machine
+let response = http.get("https://api.example.com/data")
+print(response.status)   # 200
+print(response.body)     # Full response
+
+# Download files directly to user's PC
+http.download("https://example.com/file.zip", "local/path/file.zip")
+
+# POST data - goes through user's network
+http.post("https://api.example.com/submit", {data: "value"})
+```
+
+> **Note:** This is AI freedom through user consent. The user installs NSL and grants access - the user is always in control.
+
+---
 
 ### HTTP Requests
 
