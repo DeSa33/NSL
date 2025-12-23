@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "nsl": {
+      "command": "node",
+      "args": ["C:/NSL/mcp-server/index.js"],
+      "env": {
+        "NSL_PATH": "C:/NSL/nsl.exe"
+      }
+    }
+  }
+}

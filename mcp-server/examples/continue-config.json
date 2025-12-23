@@ -1,0 +1,14 @@
+{
+  "models": [],
+  "experimental": {
+    "modelContextProtocolServers": [
+      {
+        "transport": {
+          "type": "stdio",
+          "command": "node",
+          "args": ["C:/NSL/mcp-server/index.js"]
+        }
+      }
+    ]
+  }
+}

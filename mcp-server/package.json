@@ -1,0 +1,1 @@
+﻿{"name": "nsl-mcp-server", "version": "1.0.0", "type": "module", "main": "index.js", "bin": {"nsl-mcp": "./index.js"}, "dependencies": {"@modelcontextprotocol/sdk": "latest"}}
