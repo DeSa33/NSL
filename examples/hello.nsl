@@ -1,9 +1,0 @@
-// Simple NSL test program
-// AI-friendly: clean syntax, type inference
-
-fn main() {
-    let x = 42.0
-    let y = 8.0
-    let result = x + y
-    print(result)
-}

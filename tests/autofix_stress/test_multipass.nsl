@@ -1,4 +1,0 @@
-# Multi-pass autofix test
-fn add(x, y) { return x + y }
-fn multiply(a, b, c) { return a * b * c }
-print("done")
