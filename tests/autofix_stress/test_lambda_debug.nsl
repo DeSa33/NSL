@@ -1,0 +1,2 @@
+# Lambda debug test
+fn lambda_2(a, b, c) { return any + b + c }

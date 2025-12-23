@@ -1,0 +1,16 @@
+// Recursive function test
+
+fn fib_recursive(n: number) {
+    if n <= 1 {
+        return n
+    }
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
+}
+
+fn main() {
+    print("Recursive Fibonacci:")
+    print(fib_recursive(0))
+    print(fib_recursive(1))
+    print(fib_recursive(5))
+    print(fib_recursive(10))
+}

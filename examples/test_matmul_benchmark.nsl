@@ -1,0 +1,28 @@
+# MatMul Performance Benchmark
+print("=== MatMul Benchmark ===")
+
+# Test 1: Small matrix (should be fast)
+print("Creating 64x64 matrices...")
+let start1 = timestamp()
+let a64 = []
+for i in range(0, 64) {
+    let row = []
+    for j in range(0, 64) {
+        row = row + [random()]
+    }
+    a64 = a64 + [row]
+}
+let create_time = timestamp() - start1
+print("64x64 creation time:", create_time, "seconds")
+
+# Check if tensor operations are available
+print("")
+print("Testing consciousness tensor operations...")
+let t1 = [1.0, 2.0, 3.0]
+let t2 = [4.0, 5.0, 6.0]
+let tensor_result = ⊗[t1, t2]
+print("Tensor product dimensions:", tensor_result["dimensions"])
+print("Trace:", tensor_result["trace"])
+
+print("")
+print("=== Benchmark Complete ===")

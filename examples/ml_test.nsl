@@ -1,0 +1,20 @@
+// NSL ML Activation Functions Test
+// Demonstrates AI-native built-in functions
+
+fn main() {
+    let x = -2.0
+
+    // Test all activation functions
+    print(relu(x))        // 0 (clips negatives)
+    print(sigmoid(x))     // ~0.12 (squashes to 0-1)
+    print(tanh(x))        // ~-0.96 (squashes to -1,1)
+    print(leaky_relu(x))  // -0.02 (leaks negatives)
+    print(softplus(x))    // ~0.13 (smooth relu)
+    print(gelu(x))        // ~-0.045 (transformer activation)
+
+    // Positive test
+    let y = 2.0
+    print(relu(y))        // 2
+    print(sigmoid(y))     // ~0.88
+    print(gelu(y))        // ~1.95
+}

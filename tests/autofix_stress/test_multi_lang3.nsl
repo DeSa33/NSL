@@ -1,0 +1,19 @@
+# MULTI-LANGUAGE CONVERSION TEST v3
+
+# TypeScript style
+fn greet(name) { return "Hello " + name }
+let x = null
+
+# Go style
+fn add(x x, y{ return x + y }
+null
+
+# Rust style
+switch x { }
+
+# C style
+print("test")
+null
+let count = 5
+
+print("done")

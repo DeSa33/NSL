@@ -1,0 +1,28 @@
+# Final validation test - all features
+
+# Multi-language keywords + commas (tests multi-pass)
+fn compute(x, y, z) { return x + y + z }
+fn greet(name, age) { return name }
+
+# Python blocks
+if score > 90 {
+  print("A")
+} else if score > 80 {
+  print("B")
+} else {
+  print("C")
+}
+
+# Various fixes
+let arr = [1, 2, 3, 4, 5]
+let obj = { a: 1, b: 2, c: 3 }
+let count = 10
+struct Person { }
+let x = true
+let y = false
+if z == 5 { }
+
+# Lambda
+fn lambda_26(a, b, c) { return any + b + c }
+
+print("validation complete")

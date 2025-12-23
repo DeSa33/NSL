@@ -1,0 +1,57 @@
+# Test pattern matching with Result and Option types
+
+fn safe_divide(a: number, b: number) {
+    if b == 0.0 then {
+        err(0.0)
+    } else {
+        ok(a / b)
+    }
+}
+
+fn find_value(x: number) {
+    if x > 0.0 then {
+        some(x * 2.0)
+    } else {
+        none
+    }
+}
+
+fn main() {
+    print("Testing Result pattern matching:")
+
+    # Test safe_divide with ok
+    let result1 = safe_divide(10.0, 2.0)
+    print("safe_divide(10.0, 2.0):")
+    match result1 {
+        case ok(v) => print("Success!")
+        case err(e) => print("Error!")
+    }
+
+    # Test safe_divide with err
+    let result2 = safe_divide(10.0, 0.0)
+    print("safe_divide(10.0, 0.0):")
+    match result2 {
+        case ok(v) => print("Success!")
+        case err(e) => print("Error - division by zero!")
+    }
+
+    print("Testing Option pattern matching:")
+
+    # Test find_value with some
+    let opt1 = find_value(5.0)
+    print("find_value(5.0):")
+    match opt1 {
+        case some(v) => print("Found value!")
+        case none => print("No value!")
+    }
+
+    # Test find_value with none
+    let opt2 = find_value(-1.0)
+    print("find_value(-1.0):")
+    match opt2 {
+        case some(v) => print("Found value!")
+        case none => print("No value!")
+    }
+
+    print("Pattern matching test complete!")
+}

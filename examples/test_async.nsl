@@ -1,0 +1,27 @@
+// Test async/await for concurrent operations
+
+// Define an async function
+async fn compute_value(x: number) {
+    return x * 2 + 1
+}
+
+// Define another async function that calls the first
+async fn process(n: number) {
+    let result = await compute_value(n)
+    return result + 10
+}
+
+// Call async function and await result
+let value = await compute_value(5.0)
+println(value)  // Should print 11.0
+
+let processed = await process(10.0)
+println(processed)  // Should print 31.0
+
+// Test async with expressions
+async fn square(n: number) => n * n
+
+let sq = await square(4.0)
+println(sq)  // Should print 16.0
+
+println("Async test complete!")

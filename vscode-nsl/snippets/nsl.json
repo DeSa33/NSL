@@ -1,0 +1,250 @@
+{
+  "Function Definition": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2:params}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Define a function"
+  },
+  "Function with Return Type": {
+    "prefix": "fnr",
+    "body": [
+      "fn ${1:name}(${2:params}) -> ${3:ReturnType} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Define a function with return type"
+  },
+  "Async Function": {
+    "prefix": "afn",
+    "body": [
+      "async fn ${1:name}(${2:params}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Define an async function"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If-Else Statement": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:condition} {",
+      "\t$2",
+      "} else {",
+      "\t$0",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "Match Expression": {
+    "prefix": "match",
+    "body": [
+      "match ${1:expr} {",
+      "\tcase ${2:pattern} => $3",
+      "\t_ => $0",
+      "}"
+    ],
+    "description": "Pattern matching expression"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:i} in ${2:iterable} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For loop"
+  },
+  "For Range Loop": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:i} in ${2:0}..${3:10} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For loop with range"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while ${1:condition} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "Struct Definition": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Name} {",
+      "\t${2:field}: ${3:Type}",
+      "}"
+    ],
+    "description": "Define a struct"
+  },
+  "Enum Definition": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Name} {",
+      "\t${2:Variant1}",
+      "\t${3:Variant2}",
+      "}"
+    ],
+    "description": "Define an enum"
+  },
+  "Trait Definition": {
+    "prefix": "trait",
+    "body": [
+      "trait ${1:Name} {",
+      "\tfn ${2:method}($3)",
+      "}"
+    ],
+    "description": "Define a trait"
+  },
+  "Impl Block": {
+    "prefix": "impl",
+    "body": [
+      "impl ${1:Trait} for ${2:Type} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Implement a trait for a type"
+  },
+  "Let Variable": {
+    "prefix": "let",
+    "body": "let ${1:name} = ${2:value}",
+    "description": "Declare an immutable variable"
+  },
+  "Mutable Variable": {
+    "prefix": "mut",
+    "body": "mut ${1:name} = ${2:value}",
+    "description": "Declare a mutable variable"
+  },
+  "Constant": {
+    "prefix": "const",
+    "body": "const ${1:NAME} = ${2:value}",
+    "description": "Declare a constant"
+  },
+  "Print": {
+    "prefix": "pr",
+    "body": "print(${1:value})",
+    "description": "Print without newline"
+  },
+  "Println": {
+    "prefix": "prl",
+    "body": "println(${1:value})",
+    "description": "Print with newline"
+  },
+  "Tensor Creation": {
+    "prefix": "tensor",
+    "body": "let ${1:t} = tensor([${2:data}])",
+    "description": "Create a tensor"
+  },
+  "Zeros Tensor": {
+    "prefix": "zeros",
+    "body": "let ${1:t} = zeros([${2:shape}])",
+    "description": "Create tensor of zeros"
+  },
+  "Ones Tensor": {
+    "prefix": "ones",
+    "body": "let ${1:t} = ones([${2:shape}])",
+    "description": "Create tensor of ones"
+  },
+  "Random Tensor": {
+    "prefix": "rand",
+    "body": "let ${1:t} = random([${2:shape}])",
+    "description": "Create random tensor"
+  },
+  "Holographic Operator": {
+    "prefix": "holo",
+    "body": "◈[${1:x}]",
+    "description": "Holographic operator - distributed representation"
+  },
+  "Gradient Operator": {
+    "prefix": "grad",
+    "body": "∇[${1:x}]",
+    "description": "Gradient operator - automatic differentiation"
+  },
+  "Tensor Product": {
+    "prefix": "tprod",
+    "body": "⊗[${1:a}, ${2:b}]",
+    "description": "Tensor product - outer product"
+  },
+  "Quantum Branch": {
+    "prefix": "psi",
+    "body": "Ψ[${1:x}]",
+    "description": "Quantum branching - superposition"
+  },
+  "Pipeline": {
+    "prefix": "pipe",
+    "body": "${1:value} |> ${2:fn1} |> ${3:fn2}",
+    "description": "Pipeline operator chain"
+  },
+  "Result Ok": {
+    "prefix": "ok",
+    "body": "Ok(${1:value})",
+    "description": "Result success value"
+  },
+  "Result Err": {
+    "prefix": "err",
+    "body": "Err(${1:error})",
+    "description": "Result error value"
+  },
+  "Option Some": {
+    "prefix": "some",
+    "body": "Some(${1:value})",
+    "description": "Option with value"
+  },
+  "Neural Network Layer": {
+    "prefix": "layer",
+    "body": [
+      "fn ${1:layer}(x: Tensor, w: Tensor, b: Tensor) -> Tensor {",
+      "\tlet z = matmul(x, w) + b",
+      "\treturn ${2:relu}(z)",
+      "}"
+    ],
+    "description": "Neural network layer"
+  },
+  "Attention Layer": {
+    "prefix": "attention",
+    "body": [
+      "fn attention(q: Tensor, k: Tensor, v: Tensor) -> Tensor {",
+      "\tlet d_k = shape(k)[-1]",
+      "\tlet scores = matmul(q, transpose(k)) / sqrt(d_k)",
+      "\tlet weights = softmax(scores)",
+      "\treturn matmul(weights, v)",
+      "}"
+    ],
+    "description": "Scaled dot-product attention"
+  },
+  "Test Function": {
+    "prefix": "test",
+    "body": [
+      "fn test_${1:name}() {",
+      "\t$0",
+      "\tassert(${2:condition})",
+      "}"
+    ],
+    "description": "Test function"
+  },
+  "Import Module": {
+    "prefix": "imp",
+    "body": "import ${1:module}",
+    "description": "Import a module"
+  },
+  "Import From": {
+    "prefix": "from",
+    "body": "from \"${1:path}\" import ${2:item}",
+    "description": "Import from path"
+  }
+}

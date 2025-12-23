@@ -1,0 +1,262 @@
+// Mini Transformer in NSL
+// A simple transformer-like architecture for educational purposes
+// Demonstrates: attention mechanism, embeddings, feedforward, softmax
+
+print("=== Mini Transformer in NSL ===")
+print("")
+
+// 1. Configuration
+let embed_dim = 4       // Embedding dimension
+let seq_len = 3         // Sequence length
+let vocab_size = 10     // Vocabulary size
+let num_heads = 2       // Number of attention heads
+let head_dim = 2        // Dimension per head (embed_dim / num_heads)
+
+print("Configuration:")
+print("  Embedding dim:", embed_dim)
+print("  Sequence length:", seq_len)
+print("  Vocab size:", vocab_size)
+print("")
+
+// 2. Helper: Dot product of two vectors
+fn dot_product(a, b, len) {
+    let result = 0.0
+    for i in range(0, len) {
+        result = result + a[i] * b[i]
+    }
+    return result
+}
+
+// 3. Helper: Matrix-vector multiply (matrix as array of rows)
+fn matmul_vec(matrix, vector, rows, cols) {
+    let result = []
+    for i in range(0, rows) {
+        let sum = 0.0
+        for j in range(0, cols) {
+            let row = matrix[i]
+            sum = sum + row[j] * vector[j]
+        }
+        result = result + [sum]
+    }
+    return result
+}
+
+// 4. Softmax over an array
+fn softmax(arr, len) {
+    // Find max for numerical stability
+    let max_val = arr[0]
+    for i in range(1, len) {
+        if (arr[i] > max_val) {
+            max_val = arr[i]
+        }
+    }
+
+    // Compute exp(x - max) and sum
+    let exp_vals = []
+    let sum = 0.0
+    for i in range(0, len) {
+        // Simplified exp approximation: 1 + x + x^2/2 for small x
+        let x = arr[i] - max_val
+        let exp_x = 1.0 + x + x * x / 2.0
+        if (exp_x < 0.001) {
+            exp_x = 0.001
+        }
+        exp_vals = exp_vals + [exp_x]
+        sum = sum + exp_x
+    }
+
+    // Normalize
+    let result = []
+    for i in range(0, len) {
+        result = result + [exp_vals[i] / sum]
+    }
+    return result
+}
+
+// 5. Simple embedding lookup
+fn embed(token_id, embed_matrix) {
+    return embed_matrix[token_id]
+}
+
+// 6. Scaled dot-product attention for single query
+fn attention(query, keys, values, seq_len, dim) {
+    // Compute attention scores: Q * K^T / sqrt(dim)
+    let scale = 1.0 / (dim * 0.5 + 0.5)  // Approximate sqrt(dim)
+    let scores = []
+
+    for i in range(0, seq_len) {
+        let key = keys[i]
+        let score = dot_product(query, key, dim) * scale
+        scores = scores + [score]
+    }
+
+    // Apply softmax
+    let attn_weights = softmax(scores, seq_len)
+
+    // Weighted sum of values
+    let output = []
+    for d in range(0, dim) {
+        output = output + [0.0]
+    }
+
+    for i in range(0, seq_len) {
+        let val = values[i]
+        let weight = attn_weights[i]
+        for d in range(0, dim) {
+            output[d] = output[d] + weight * val[d]
+        }
+    }
+
+    return output
+}
+
+// 7. Simple feedforward network
+fn feedforward(input, dim) {
+    let output = []
+    for i in range(0, dim) {
+        // ReLU activation with simple linear transformation
+        let val = input[i] * 1.5 + 0.1
+        if (val < 0) {
+            val = 0
+        }
+        output = output + [val]
+    }
+    return output
+}
+
+// 8. Layer normalization (simplified)
+fn layer_norm(input, dim) {
+    // Compute mean
+    let mean = 0.0
+    for i in range(0, dim) {
+        mean = mean + input[i]
+    }
+    mean = mean / dim
+
+    // Compute variance
+    let variance = 0.0
+    for i in range(0, dim) {
+        let diff = input[i] - mean
+        variance = variance + diff * diff
+    }
+    variance = variance / dim
+
+    // Normalize (add small epsilon for stability)
+    let std = variance + 0.001
+    // Approximate sqrt using Newton's method (one iteration)
+    std = (std + 1.0) / 2.0
+
+    let output = []
+    for i in range(0, dim) {
+        output = output + [(input[i] - mean) / std]
+    }
+    return output
+}
+
+// 9. Transformer block
+fn transformer_block(embeddings, seq_len, dim) {
+    print("  Running attention...")
+
+    // Self-attention for each position
+    let attended = []
+    for pos in range(0, seq_len) {
+        let query = embeddings[pos]
+        let attn_out = attention(query, embeddings, embeddings, seq_len, dim)
+        attended = attended + [attn_out]
+    }
+
+    // Add residual connection and layer norm
+    let normed = []
+    for pos in range(0, seq_len) {
+        let emb = embeddings[pos]
+        let att = attended[pos]
+        let combined = []
+        for d in range(0, dim) {
+            combined = combined + [emb[d] + att[d]]
+        }
+        let ln = layer_norm(combined, dim)
+        normed = normed + [ln]
+    }
+
+    print("  Running feedforward...")
+
+    // Feedforward for each position
+    let output = []
+    for pos in range(0, seq_len) {
+        let ff_out = feedforward(normed[pos], dim)
+        output = output + [ff_out]
+    }
+
+    return output
+}
+
+// 10. Main: Create a mini transformer and run inference
+print("--- Creating Embedding Matrix ---")
+
+// Simple embedding matrix (vocab_size x embed_dim)
+let embeddings_table = [
+    [0.1, 0.2, 0.3, 0.4],   // Token 0
+    [0.5, 0.6, 0.7, 0.8],   // Token 1
+    [0.9, 1.0, 1.1, 1.2],   // Token 2
+    [0.2, 0.4, 0.6, 0.8],   // Token 3
+    [0.3, 0.5, 0.7, 0.9],   // Token 4
+    [0.4, 0.6, 0.8, 1.0],   // Token 5
+    [0.1, 0.3, 0.5, 0.7],   // Token 6
+    [0.2, 0.5, 0.8, 1.1],   // Token 7
+    [0.6, 0.7, 0.8, 0.9],   // Token 8
+    [1.0, 0.9, 0.8, 0.7]    // Token 9
+]
+
+// Input sequence: [1, 3, 5]
+let input_tokens = [1, 3, 5]
+print("Input tokens:", input_tokens[0], input_tokens[1], input_tokens[2])
+
+// Look up embeddings
+print("")
+print("--- Embedding Lookup ---")
+let input_embeddings = []
+for i in range(0, seq_len) {
+    let token = input_tokens[i]
+    let emb = embed(token, embeddings_table)
+    input_embeddings = input_embeddings + [emb]
+    print("Token", token, "-> [", emb[0], emb[1], emb[2], emb[3], "]")
+}
+
+// Run through transformer block
+print("")
+print("--- Transformer Block ---")
+let output = transformer_block(input_embeddings, seq_len, embed_dim)
+
+// Print output
+print("")
+print("--- Output Embeddings ---")
+for i in range(0, seq_len) {
+    let out = output[i]
+    print("Position", i, "-> [", out[0], out[1], out[2], out[3], "]")
+}
+
+// Simple prediction: argmax over output projection
+print("")
+print("--- Prediction (simplified) ---")
+fn predict_next(embedding) {
+    // Project to vocab size and find max
+    let max_score = 0.0 - 999.0
+    let best_token = 0
+
+    for token in range(0, vocab_size) {
+        let token_emb = embeddings_table[token]
+        let score = dot_product(embedding, token_emb, embed_dim)
+        if (score > max_score) {
+            max_score = score
+            best_token = token
+        }
+    }
+    return best_token
+}
+
+let last_output = output[seq_len - 1]
+let predicted = predict_next(last_output)
+print("Predicted next token:", predicted)
+
+print("")
+print("=== Mini Transformer Complete ===")

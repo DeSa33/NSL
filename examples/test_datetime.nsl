@@ -1,0 +1,36 @@
+// Test date/time operations
+
+// Note: These functions require linking with the NSL runtime library
+// that provides implementations for nsl_now, nsl_date_format, etc.
+
+// Get current timestamp
+// let timestamp = now()
+// println(timestamp)  // Unix timestamp in seconds
+
+// Get current time in milliseconds
+// let ms = now_ms()
+
+// Format a date
+// let formatted = date_format(timestamp, "%Y-%m-%d %H:%M:%S")
+// println(formatted)
+
+// Extract date components
+// let year = date_year(timestamp)
+// let month = date_month(timestamp)
+// let day = date_day(timestamp)
+// let hour = date_hour(timestamp)
+// let minute = date_minute(timestamp)
+// let second = date_second(timestamp)
+// let weekday = date_weekday(timestamp)  // 0=Sunday, 6=Saturday
+
+// Date arithmetic
+// let tomorrow = date_add_days(timestamp, 1)
+// let in_2_hours = date_add_hours(timestamp, 2)
+
+// Calculate difference between dates
+// let diff = date_diff(timestamp1, timestamp2)  // difference in seconds
+
+// Sleep for specified milliseconds
+// sleep(1000)  // sleep for 1 second
+
+println("Date/time functions declared (requires runtime library)")

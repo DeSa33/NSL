@@ -1,0 +1,16 @@
+// NSL Module System Test - Simple
+// Tests import/export without complex module bodies
+
+import { sin, cos } from math
+
+pub fn add(a: number, b: number) {
+    return a + b
+}
+
+pub let PI = 3.14159
+
+fn main() {
+    let result = add(10, 20)
+    print(result)
+    print(PI)
+}

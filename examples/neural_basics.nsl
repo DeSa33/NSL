@@ -1,0 +1,117 @@
+// Neural Basics in NSL
+// Demonstrates fundamental neural network concepts using NSL
+
+print("=== Neural Network Basics in NSL ===")
+print("")
+
+// 1. Activation Functions
+print("-- Activation Functions --")
+
+// ReLU activation
+fn relu(x) {
+    if (x > 0) {
+        return x
+    }
+    return 0
+}
+
+// Sigmoid approximation using polynomial
+fn sigmoid(x) {
+    // Simplified sigmoid for demonstration
+    if (x > 5) {
+        return 1.0
+    }
+    if (x < -5) {
+        return 0.0
+    }
+    // Linear approximation in middle range
+    return 0.5 + x * 0.1
+}
+
+// Step function
+fn step(x) {
+    if (x > 0) {
+        return 1
+    }
+    return 0
+}
+
+print("relu(-2) =", relu(-2))
+print("relu(3) =", relu(3))
+print("sigmoid(-5) =", sigmoid(-5))
+print("sigmoid(0) =", sigmoid(0))
+print("sigmoid(5) =", sigmoid(5))
+print("")
+
+// 2. Simple Perceptron
+print("-- Simple Perceptron --")
+
+// A single neuron with 2 inputs
+fn perceptron(x1, x2, w1, w2, bias) {
+    let weighted_sum = x1 * w1 + x2 * w2 + bias
+    return step(weighted_sum)
+}
+
+// AND gate using perceptron
+print("AND gate perceptron:")
+print("AND(0, 0) =", perceptron(0, 0, 1, 1, -1.5))
+print("AND(0, 1) =", perceptron(0, 1, 1, 1, -1.5))
+print("AND(1, 0) =", perceptron(1, 0, 1, 1, -1.5))
+print("AND(1, 1) =", perceptron(1, 1, 1, 1, -1.5))
+print("")
+
+// OR gate using perceptron
+print("OR gate perceptron:")
+print("OR(0, 0) =", perceptron(0, 0, 1, 1, -0.5))
+print("OR(0, 1) =", perceptron(0, 1, 1, 1, -0.5))
+print("OR(1, 0) =", perceptron(1, 0, 1, 1, -0.5))
+print("OR(1, 1) =", perceptron(1, 1, 1, 1, -0.5))
+print("")
+
+// 3. Softmax-like normalization
+print("-- Softmax-like Normalization --")
+
+fn normalize(a, b, c) {
+    let total = a + b + c
+    print("Input:", a, b, c)
+    print("Normalized:", a/total, b/total, c/total)
+}
+
+normalize(10, 20, 30)
+print("")
+
+// 4. Loss Function
+print("-- Mean Squared Error --")
+
+fn mse(predicted, actual) {
+    let diff = predicted - actual
+    return diff * diff
+}
+
+print("MSE(5, 5) =", mse(5, 5))
+print("MSE(5, 6) =", mse(5, 6))
+print("MSE(5, 10) =", mse(5, 10))
+print("")
+
+// 5. Simple Gradient Descent Step
+print("-- Gradient Descent Step --")
+
+fn gradient_step(current, gradient, learning_rate) {
+    return current - learning_rate * gradient
+}
+
+let weight = 5.0
+print("Initial weight:", weight)
+
+// Simulate optimization steps
+weight = gradient_step(weight, 2.0, 0.1)
+print("After step 1:", weight)
+
+weight = gradient_step(weight, 1.5, 0.1)
+print("After step 2:", weight)
+
+weight = gradient_step(weight, 1.0, 0.1)
+print("After step 3:", weight)
+
+print("")
+print("=== Neural Basics Complete ===")

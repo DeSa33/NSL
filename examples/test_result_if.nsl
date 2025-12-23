@@ -1,0 +1,29 @@
+# Test function with if returning different Results
+
+fn get_result(flag: number) {
+    if flag > 0.0 then {
+        ok(flag * 2.0)
+    } else {
+        err(0.0)
+    }
+}
+
+fn main() {
+    print("Testing if-then-else with Result:")
+
+    let r1 = get_result(5.0)
+    print("get_result(5.0):")
+    match r1 {
+        case ok(v) => print("Got ok!")
+        case err(e) => print("Got err!")
+    }
+
+    let r2 = get_result(-1.0)
+    print("get_result(-1.0):")
+    match r2 {
+        case ok(v) => print("Got ok!")
+        case err(e) => print("Got err!")
+    }
+
+    print("Done!")
+}

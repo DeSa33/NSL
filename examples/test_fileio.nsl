@@ -1,0 +1,70 @@
+# Test file I/O operations
+
+fn main() {
+    print("Testing file I/O operations:")
+
+    # Test writing to a file (use temp directory)
+    let testPath = "C:/Temp/nsl_test_output.txt"
+    let content = "Hello from NSL!\nThis is a test file.\n"
+
+    print("Writing to file...")
+    let writeSuccess = write_file(testPath, content)
+
+    if writeSuccess then {
+        print("Write successful!")
+    } else {
+        print("Write failed!")
+    }
+
+    # Test file_exists
+    print("Checking if file exists...")
+    let exists = file_exists(testPath)
+
+    if exists then {
+        print("File exists!")
+    } else {
+        print("File does not exist!")
+    }
+
+    # Test reading from file
+    print("Reading file contents:")
+    let readContent = read_file(testPath)
+    print(readContent)
+
+    # Test appending to file
+    print("Appending to file...")
+    let appendContent = "This line was appended.\n"
+    let appendSuccess = append_file(testPath, appendContent)
+
+    if appendSuccess then {
+        print("Append successful!")
+    } else {
+        print("Append failed!")
+    }
+
+    # Read again to see appended content
+    print("Reading file after append:")
+    let finalContent = read_file(testPath)
+    print(finalContent)
+
+    # Test deleting the file
+    print("Deleting test file...")
+    let deleteSuccess = delete_file(testPath)
+
+    if deleteSuccess then {
+        print("Delete successful!")
+    } else {
+        print("Delete failed!")
+    }
+
+    # Verify file is deleted
+    let stillExists = file_exists(testPath)
+
+    if stillExists then {
+        print("File still exists (unexpected)")
+    } else {
+        print("File successfully deleted!")
+    }
+
+    print("File I/O test complete!")
+}

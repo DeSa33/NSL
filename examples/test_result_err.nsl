@@ -1,0 +1,19 @@
+# Test function returning err Result
+
+fn get_err() {
+    err(0.0)
+}
+
+fn main() {
+    print("Testing function returning err:")
+
+    let r = get_err()
+    print("Got result from function")
+
+    match r {
+        case ok(v) => print("Got ok!")
+        case err(e) => print("Got err!")
+    }
+
+    print("Done!")
+}

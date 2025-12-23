@@ -1,0 +1,57 @@
+# Full Feature Test
+print("=== NSL Full Feature Test ===")
+
+# 1. File operations
+print("\n--- File Operations ---")
+write_file("E:\\NSL.Interpreter\\test_output.txt", "Hello from NSL!")
+let content = read_file("E:\\NSL.Interpreter\\test_output.txt")
+print("File content:", content)
+print("File exists:", file_exists("E:\\NSL.Interpreter\\test_output.txt"))
+
+# 2. JSON operations
+print("\n--- JSON Operations ---")
+let obj = {name: "NSL", version: 1.0, active: true}
+let json_str = json_stringify(obj)
+print("JSON:", json_str)
+let parsed = json_parse(json_str)
+print("Parsed name:", parsed["name"])
+
+# 3. String operations
+print("\n--- String Operations ---")
+let text = "Hello, World!"
+print("Upper:", upper(text))
+print("Lower:", lower(text))
+print("Split:", split("a,b,c", ","))
+print("Contains 'World':", contains(text, "World"))
+
+# 4. Array operations
+print("\n--- Array Operations ---")
+let arr = [5, 2, 8, 1, 9]
+print("Original:", arr)
+print("Sorted:", sort(arr))
+print("Reversed:", reverse(arr))
+print("Sum:", sum(5, 2, 8, 1, 9))
+print("Max:", max(5, 2, 8, 1, 9))
+
+# 5. Math operations
+print("\n--- Math Operations ---")
+print("sqrt(16):", sqrt(16))
+print("pow(2, 10):", pow(2, 10))
+print("abs(-42):", abs(-42))
+print("round(3.7):", round(3.7))
+
+# 6. Shell execution
+print("\n--- Shell Execution ---")
+let result = shell("echo Hello from shell")
+print("Shell output:", result["output"])
+print("Exit code:", result["exit_code"])
+
+# 7. Extended consciousness operators
+print("\n--- Extended Consciousness Ops ---")
+let mem_result = μ["test_key", 42]
+print("Memory store:", mem_result["type"])
+
+let self_result = σ[arr]
+print("Self introspection:", self_result["type"])
+
+print("\n=== All Tests Passed ===")

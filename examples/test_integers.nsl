@@ -1,0 +1,67 @@
+# Test integer operations in NSL
+
+fn main() {
+    # Integer literals and arithmetic
+    let a = 42
+    let b = 10
+
+    print("Integer basics:")
+    print(a)
+    print(b)
+
+    # Integer arithmetic
+    print("Addition: 42 + 10 =")
+    print(a + b)
+
+    print("Subtraction: 42 - 10 =")
+    print(a - b)
+
+    print("Multiplication: 42 * 10 =")
+    print(a * b)
+
+    print("Division: 42 / 10 =")
+    print(a / b)
+
+    print("Modulo: 42 % 10 =")
+    print(a % b)
+
+    # Bitwise operations
+    print("Bitwise AND: 42 & 10 =")
+    print(a & b)
+
+    print("Bitwise OR: 42 | 10 =")
+    let orResult = a | b
+    print(orResult)
+
+    print("Bitwise XOR: 42 ^ 10 =")
+    let xorResult = a ^ b
+    print(xorResult)
+
+    print("Left shift: 10 << 2 =")
+    print(b << 2)
+
+    print("Right shift: 42 >> 2 =")
+    print(a >> 2)
+
+    # Comparisons with integers
+    print("42 > 10 is")
+    if a > b then {
+        print("true")
+    } else {
+        print("false")
+    }
+
+    print("10 < 42 is")
+    if b < a then {
+        print("true")
+    } else {
+        print("false")
+    }
+
+    # Mixing: this should convert to double
+    print("Float: 3.14")
+    let pi = 3.14
+    print(pi)
+
+    print("Done testing integers!")
+}

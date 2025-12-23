@@ -1,0 +1,115 @@
+// Comprehensive NSL Test Suite
+// Tests all major language features
+
+print("=== NSL Comprehensive Test ===")
+
+// 1. Variables and Types
+print("\n-- Variables and Types --")
+let x = 42
+let y = 3.14
+let name = "NSL"
+let flag = true
+print("Integer:", x)
+print("Float:", y)
+print("String:", name)
+print("Bool:", flag)
+
+// 2. Arithmetic Operations
+print("\n-- Arithmetic --")
+let a = 10
+let b = 3
+print("a =", a, "b =", b)
+print("a + b =", a + b)
+print("a - b =", a - b)
+print("a * b =", a * b)
+print("a / b =", a / b)
+print("a % b =", a % b)
+
+// 3. Comparison Operations
+print("\n-- Comparisons --")
+print("10 > 5:", 10 > 5)
+print("10 < 5:", 10 < 5)
+print("10 == 10:", 10 == 10)
+print("10 != 5:", 10 != 5)
+print("10 >= 10:", 10 >= 10)
+print("5 <= 10:", 5 <= 10)
+
+// 4. Logical Operations
+print("\n-- Logic --")
+print("true and false:", true and false)
+print("true or false:", true or false)
+print("not true:", not true)
+
+// 5. Control Flow - If/Else
+print("\n-- If/Else --")
+let score = 85
+if (score >= 90) {
+    print("Grade: A")
+} else if (score >= 80) {
+    print("Grade: B")
+} else if (score >= 70) {
+    print("Grade: C")
+} else {
+    print("Grade: F")
+}
+
+// 6. Loops - For
+print("\n-- For Loop --")
+print("Counting 1 to 5:")
+for i in range(1, 6) {
+    print(i)
+}
+
+// 7. Loops - While
+print("\n-- While Loop --")
+let count = 0
+while (count < 3) {
+    print("Count:", count)
+    count = count + 1
+}
+
+// 8. Functions
+print("\n-- Functions --")
+fn square(n) {
+    return n * n
+}
+
+fn factorial(n) {
+    if (n <= 1) {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+print("square(5) =", square(5))
+print("factorial(5) =", factorial(5))
+
+// 9. Arrays
+print("\n-- Arrays --")
+let arr = [1, 2, 3, 4, 5]
+print("Array:", arr)
+print("First element:", arr[0])
+print("Third element:", arr[2])
+
+// 10. Nested Functions
+print("\n-- Closures --")
+fn makeAdder(x) {
+    fn adder(y) {
+        return x + y
+    }
+    return adder
+}
+let add5 = makeAdder(5)
+print("makeAdder(5)(10) =", add5(10))
+
+// 11. Higher-order Functions
+print("\n-- Higher Order Functions --")
+fn applyTwice(f, x) {
+    return f(f(x))
+}
+fn double(n) {
+    return n * 2
+}
+print("applyTwice(double, 3) =", applyTwice(double, 3))
+
+print("\n=== All Tests Completed! ===")

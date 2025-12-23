@@ -1,0 +1,25 @@
+// Test JSON parsing and serialization
+
+// Note: These functions require linking with the NSL runtime library
+// that provides implementations for nsl_json_parse, nsl_json_stringify, etc.
+
+// Parse JSON string
+// let result = json_parse('{"name": "John", "age": 30}')
+// match result {
+//     case ok(obj) => {
+//         let name = json_get(obj, "name")
+//         println(name)
+//     }
+//     case err(error) => println("Parse error: " + error)
+// }
+
+// Create JSON object and stringify
+// let person = { "name": "Jane", "age": 25 }
+// let json = json_stringify(person)
+// println(json)
+
+// Check if key exists
+// let has_name = json_has(person, "name")
+// let has_email = json_has(person, "email")
+
+println("JSON functions declared (requires runtime library)")

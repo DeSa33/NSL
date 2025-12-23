@@ -1,0 +1,85 @@
+# Test Result/Optional chaining functions
+
+fn get_ok_value() {
+    ok(42.0)
+}
+
+fn get_err_value() {
+    err(999.0)
+}
+
+fn get_some_value() {
+    some(100.0)
+}
+
+fn main() {
+    print("Testing Result/Optional chaining:")
+
+    # Test is_ok and is_err
+    let r1 = get_ok_value()
+    let r2 = get_err_value()
+
+    print("Testing is_ok:")
+    if is_ok(r1) then {
+        print("r1 is Ok - correct!")
+    } else {
+        print("r1 is Err - wrong!")
+    }
+
+    print("Testing is_err:")
+    if is_err(r2) then {
+        print("r2 is Err - correct!")
+    } else {
+        print("r2 is Ok - wrong!")
+    }
+
+    # Test unwrap on Ok
+    print("Testing unwrap on Ok:")
+    let v1 = unwrap(r1)
+    print("unwrap(ok(42)) = ")
+    print(v1)
+
+    # Test unwrap_or on Err
+    print("Testing unwrap_or on Err:")
+    let v2 = unwrap_or(r2, -1.0)
+    print("unwrap_or(err(999), -1) = ")
+    print(v2)
+
+    # Test unwrap_or on Ok
+    print("Testing unwrap_or on Ok:")
+    let v3 = unwrap_or(r1, -1.0)
+    print("unwrap_or(ok(42), -1) = ")
+    print(v3)
+
+    # Test Optional functions
+    print("Testing Optional functions:")
+    let o1 = get_some_value()
+    let o2 = none
+
+    print("Testing is_some:")
+    if is_some(o1) then {
+        print("o1 is Some - correct!")
+    } else {
+        print("o1 is None - wrong!")
+    }
+
+    print("Testing is_none:")
+    if is_none(o2) then {
+        print("o2 is None - correct!")
+    } else {
+        print("o2 is Some - wrong!")
+    }
+
+    # Test option_unwrap_or
+    print("Testing option_unwrap_or on Some:")
+    let v4 = option_unwrap_or(o1, -1.0)
+    print("option_unwrap_or(some(100), -1) = ")
+    print(v4)
+
+    print("Testing option_unwrap_or on None:")
+    let v5 = option_unwrap_or(o2, -1.0)
+    print("option_unwrap_or(none, -1) = ")
+    print(v5)
+
+    print("Done!")
+}

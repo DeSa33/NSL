@@ -1,0 +1,9 @@
+# Test integer division only
+print("Testing integer division:")
+let a = 17
+let b = 5
+print("a =", a)
+print("b =", b)
+let result = a // b
+print("a // b =", result)
+print("Expected: 3")

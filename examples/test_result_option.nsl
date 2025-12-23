@@ -1,0 +1,27 @@
+# Test Result and Option types
+
+fn main() {
+    print("Testing Result and Option types:")
+
+    # Test Ok result
+    print("Creating ok(42.0):")
+    let success = ok(42.0)
+    print("Created ok result")
+
+    # Test Err result
+    print("Creating err(0.0):")
+    let failure = err(0.0)
+    print("Created err result")
+
+    # Test Some optional
+    print("Creating some(10.0):")
+    let present = some(10.0)
+    print("Created some optional")
+
+    # Test None optional
+    print("Creating none:")
+    let absent = none
+    print("Created none optional")
+
+    print("Result/Option test complete!")
+}

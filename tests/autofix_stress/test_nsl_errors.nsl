@@ -1,0 +1,54 @@
+# ============================================================
+# NSL AUTOFIX STRESS TEST - Intentional Errors
+# ============================================================
+
+# --- TYPOS IN KEYWORDS ---
+fn add(x, y) {
+  return x + y
+}
+
+fn multiply(a, b) {
+  return a * b
+}
+
+fn greet(name) {
+  print("Hello, " + name)
+}
+
+# --- WRONG VARIABLE DECLARATIONS ---
+let count = 10
+let MAX = 100
+
+# --- BOOLEAN TYPOS ---
+let isActive = true
+let isEnabled = false
+let isNull = null
+
+# --- WRONG OPERATORS ---
+if x == 5 {
+  print("equal")
+}
+if y != 10 {
+  print("not equal")
+}
+
+# --- WRONG KEYWORDS FROM OTHER LANGUAGES ---
+struct Person {
+  let name = ""
+}
+
+trait Printable {
+  fn print()
+}
+
+fn x: x * 2
+
+# --- RESERVED WORD AS VARIABLE ---
+let if_ = 5
+let while_ = 10
+
+# --- NULL ALTERNATIVES ---
+let empty = null
+let nothing = null
+
+print("End of test file")

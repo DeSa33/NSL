@@ -1,0 +1,26 @@
+# FINAL COMPREHENSIVE TEST
+
+# NSL syntax fixes
+let nums = [1, 2, 3, 4, 5]
+let obj = { name: "test", age: 25 }
+fn calc(a, b, c) { return a + b + c }
+fn broken() { return 5 }
+let x = true
+let y = null
+if z == 5 { }
+let count = 10
+struct Person { }
+
+# Python-style blocks
+if score > 90 {
+  print("A")
+} else if score > 80 {
+  print("B")
+} else {
+  print("C")
+}
+
+# Lambda
+fn lambda_23(x, y) { return x + y }
+
+print("done")

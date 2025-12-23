@@ -1,0 +1,37 @@
+# Test file for NSL fixes
+# Testing: ** (power), // (integer division), and array printing
+
+print("=== Testing ** (Power) Operator ===")
+let x = 2 ** 3
+print("2 ** 3 =", x)
+
+let y = 10 ** 2
+print("10 ** 2 =", y)
+
+let z = 2.5 ** 2
+print("2.5 ** 2 =", z)
+
+print("")
+print("=== Testing // (Integer Division) Operator ===")
+let a = 17 // 5
+print("17 // 5 =", a)
+
+let b = 10 // 3
+print("10 // 3 =", b)
+
+let c = -7 // 2
+print("-7 // 2 =", c)
+
+print("")
+print("=== Testing Array Printing ===")
+let arr1 = [1, 2, 3, 4, 5]
+print("Array:", arr1)
+
+let arr2 = [[1, 2], [3, 4]]
+print("Nested array:", arr2)
+
+let arr3 = ["hello", "world", 42, true]
+print("Mixed array:", arr3)
+
+print("")
+print("=== All Tests Complete! ===")

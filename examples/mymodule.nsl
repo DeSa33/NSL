@@ -1,0 +1,9 @@
+# Simple test module
+
+pub fn double(x) {
+    return x * 2.0
+}
+
+pub let MAGIC = 42.0
+
+export { double, MAGIC }

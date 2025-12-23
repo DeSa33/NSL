@@ -1,0 +1,29 @@
+// Test consciousness operators
+
+// Test holographic encoding
+let value = 5.0
+let encoded = ◈[value]
+print("Holographic encoded:", encoded)
+
+// Test gradient
+let gradient = ∇[value]
+print("Gradient:", gradient)
+
+// Test quantum superposition
+let quantum = Ψ[value]
+print("Quantum:", quantum)
+
+// Test function
+fn add(a, b) {
+    return a + b
+}
+
+let result = add(3, 4)
+print("3 + 4 =", result)
+
+// Test async function
+async fn delayed_compute() {
+    return 42
+}
+
+print("Test completed successfully!")

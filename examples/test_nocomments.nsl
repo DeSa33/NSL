@@ -1,0 +1,29 @@
+print("=== NSL Test ===")
+
+let x = 42
+let y = 3.14
+let name = "NSL"
+print("Integer:", x)
+print("Float:", y)
+print("String:", name)
+
+let a = 10
+let b = 3
+print("a + b =", a + b)
+print("a * b =", a * b)
+print("a ** b =", a ** b)
+
+if (10 > 5) {
+    print("10 is greater than 5")
+}
+
+fn add(x, y) {
+    return x + y
+}
+print("add(3, 4) =", add(3, 4))
+
+for i in range(1, 4) {
+    print("Loop i =", i)
+}
+
+print("=== Test Done ===")

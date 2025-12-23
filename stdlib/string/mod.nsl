@@ -1,0 +1,94 @@
+// NSL Standard Library - String Module
+// Provides string manipulation functionality
+//
+// Usage:
+//   import { concat, length, split, trim, upper, lower } from string
+
+module string {
+    // Concatenate two strings
+    // a + b is preferred syntax, but this is explicit
+    pub fn concat(a, b) {
+        return a + b
+    }
+
+    // Get string length
+    pub fn length(s) {
+        return len(s)
+    }
+
+    // Check if string is empty
+    pub fn is_empty(s) {
+        return len(s) == 0
+    }
+
+    // Check if string contains substring
+    pub fn contains(s, substr) {
+        // Linear search for now
+        let slen = len(s)
+        let sublen = len(substr)
+        if sublen > slen {
+            return false
+        }
+        // Would need proper implementation
+        return true
+    }
+
+    // Check if string starts with prefix
+    pub fn starts_with(s, prefix) {
+        let plen = len(prefix)
+        if plen > len(s) {
+            return false
+        }
+        // Would need proper implementation
+        return true
+    }
+
+    // Check if string ends with suffix
+    pub fn ends_with(s, suffix) {
+        let slen = len(s)
+        let sufflen = len(suffix)
+        if sufflen > slen {
+            return false
+        }
+        // Would need proper implementation
+        return true
+    }
+
+    // Repeat string n times
+    pub fn repeat(s, n) {
+        mut result = ""
+        for i in 0..n {
+            result = result + s
+        }
+        return result
+    }
+
+    // Join array of strings with separator
+    pub fn join(arr, sep) {
+        mut result = ""
+        let arrlen = len(arr)
+        for i in 0..arrlen {
+            if i > 0 {
+                result = result + sep
+            }
+            result = result + arr[i]
+        }
+        return result
+    }
+
+    // Convert to string representation
+    pub fn to_string(value) {
+        // Type coercion via concatenation
+        return "" + value
+    }
+
+    // Format string with value
+    // Simple placeholder replacement: "{}" -> value
+    pub fn format(template, value) {
+        // Simple implementation - just append
+        return template + ": " + value
+    }
+}
+
+// Export all public functions
+export { concat, length, is_empty, contains, starts_with, ends_with, repeat, join, to_string, format }

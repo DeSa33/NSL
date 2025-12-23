@@ -1,0 +1,13 @@
+# Test Python elif conversion
+
+if x > 10 {
+  print("big")
+} else if x > 5 {
+  print("medium")
+} else if x > 0 {
+  print("small")
+} else {
+  print("zero or negative")
+}
+
+print("done")

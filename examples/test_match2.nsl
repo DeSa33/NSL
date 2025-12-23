@@ -1,0 +1,39 @@
+# Test more pattern matching features
+
+fn greet(name: string) {
+    match name {
+        case "Alice" => "Hello, Alice!"
+        case "Bob" => "Hi, Bob!"
+        case person => "Nice to meet you!"
+    }
+}
+
+fn get_sign(n: number) {
+    match n {
+        case 0.0 => "zero"
+        case x => "non-zero"
+    }
+}
+
+fn main() {
+    print("Testing pattern matching with strings:")
+
+    print("greet(Alice):")
+    print(greet("Alice"))
+
+    print("greet(Bob):")
+    print(greet("Bob"))
+
+    print("greet(Claude):")
+    print(greet("Claude"))
+
+    print("Testing pattern matching with floats:")
+
+    print("get_sign(0.0):")
+    print(get_sign(0.0))
+
+    print("get_sign(5.5):")
+    print(get_sign(5.5))
+
+    print("Done!")
+}

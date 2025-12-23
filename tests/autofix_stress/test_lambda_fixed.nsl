@@ -1,0 +1,2 @@
+# Lambda test after fix
+fn lambda_2(a, b, c) { return a + b + c }

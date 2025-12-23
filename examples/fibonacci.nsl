@@ -1,0 +1,25 @@
+// Fibonacci sequence - iterative version
+// Tests loops and basic arithmetic
+
+fn fib(n: number) {
+    if n <= 1 {
+        return n
+    }
+    mut a = 0.0
+    mut b = 1.0
+    for i in 2..=n {
+        let temp = a + b
+        a = b
+        b = temp
+    }
+    return b
+}
+
+fn main() {
+    print("Fibonacci sequence (first 15):")
+
+    for i in 0..15 {
+        let result = fib(i)
+        print(result)
+    }
+}

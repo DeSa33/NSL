@@ -1,0 +1,31 @@
+# Test string operations in NSL
+
+fn main() {
+    # Basic string
+    let hello = "Hello"
+    let world = "World"
+
+    print("Basic strings:")
+    print(hello)
+    print(world)
+
+    # String concatenation
+    print("Concatenation with +:")
+    let greeting = hello + " " + world + "!"
+    print(greeting)
+
+    # String length
+    print("String lengths:")
+    let len1 = str_len(hello)
+    print(len1)
+
+    let len2 = strlen(world)
+    print(len2)
+
+    # Substring/slice
+    print("Substring (from Hello, start=1, len=3 = 'ell'):")
+    let sub = str_slice(hello, 1, 3)
+    print(sub)
+
+    print("Done testing strings!")
+}

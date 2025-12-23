@@ -1,0 +1,10 @@
+# Simple Result test without pattern matching
+
+fn main() {
+    print("Testing simple Result:")
+
+    let r = ok(42.0)
+    print("Created ok result")
+
+    print("Done!")
+}

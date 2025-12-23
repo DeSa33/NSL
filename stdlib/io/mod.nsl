@@ -1,0 +1,65 @@
+// NSL Standard Library - IO Module
+// Provides input/output functionality
+//
+// Usage:
+//   import { print, println, read_line, read_file, write_file } from io
+//
+// This module wraps native I/O operations for safe, ergonomic use
+
+module io {
+    // Console output - print without newline
+    // Already a builtin, re-exported for consistency
+    pub fn print(value) {
+        // Native builtin
+        print(value)
+    }
+
+    // Console output - print with newline
+    pub fn println(value) {
+        print(value)
+        print("\n")
+    }
+
+    // Read a line from stdin
+    // Returns: string
+    pub fn read_line() {
+        return input()
+    }
+
+    // Print formatted output (simple version)
+    // format: string with {} placeholders
+    // args: values to substitute
+    pub fn printf(format, value) {
+        // Simple single-value format for now
+        print(format)
+        print(": ")
+        println(value)
+    }
+
+    // Debug print - shows type and value
+    pub fn debug(value) {
+        print("[DEBUG] ")
+        println(value)
+    }
+
+    // Error output - prints to stderr conceptually
+    pub fn error(message) {
+        print("[ERROR] ")
+        println(message)
+    }
+
+    // Warning output
+    pub fn warn(message) {
+        print("[WARN] ")
+        println(message)
+    }
+
+    // Info output
+    pub fn info(message) {
+        print("[INFO] ")
+        println(message)
+    }
+}
+
+// Export main functions
+export { print, println, read_line, printf, debug, error, warn, info }

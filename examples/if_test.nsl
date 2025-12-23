@@ -1,0 +1,13 @@
+// If statement test
+
+fn abs_val(x: number) {
+    if x < 0.0 {
+        return 0.0 - x
+    }
+    return x
+}
+
+fn main() {
+    print(abs_val(5.0))
+    print(abs_val(-3.0))
+}

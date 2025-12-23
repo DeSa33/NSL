@@ -1,0 +1,12 @@
+# Test local module import
+
+import { double, MAGIC } from mymodule
+
+fn main() {
+    print("Testing local module import:")
+    print("MAGIC value:")
+    print(MAGIC)
+    print("double(5):")
+    print(double(5.0))
+    print("Done!")
+}

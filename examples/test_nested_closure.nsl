@@ -1,0 +1,32 @@
+// Debug nested closures
+print("=== Nested Closure Debug ===")
+
+fn outer(x) {
+    print("outer: x =", x)
+
+    fn middle(y) {
+        print("  middle: y =", y)
+        print("  middle: x =", x)  // Can middle see x?
+
+        fn inner(z) {
+            print("    inner: z =", z)
+            print("    inner: y =", y)  // Can inner see y?
+            print("    inner: x =", x)  // Can inner see x?
+            return x + y + z
+        }
+
+        return inner
+    }
+
+    return middle
+}
+
+print("Calling outer(1):")
+let step1 = outer(1)
+
+print("Calling step1(2) (middle):")
+let step2 = step1(2)
+
+print("Calling step2(3) (inner):")
+let result = step2(3)
+print("Result:", result)

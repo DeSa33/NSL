@@ -1,0 +1,18 @@
+// While loop test
+
+fn factorial(n: number) {
+    let result = 1.0
+    let i = 1.0
+    while i <= n {
+        result = result * i
+        i = i + 1.0
+    }
+    return result
+}
+
+fn main() {
+    print("Factorials:")
+    print(factorial(1.0))
+    print(factorial(5.0))
+    print(factorial(10.0))
+}

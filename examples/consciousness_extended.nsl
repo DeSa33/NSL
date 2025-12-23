@@ -1,0 +1,171 @@
+# Extended Consciousness Operators Test
+# Testing: μ (Memory), σ (Self), ↓ (Collapse), ≈ (Similarity), ∫ (Integral), ± (Uncertainty)
+
+print("=== NSL Extended Consciousness Operators ===")
+print("")
+
+# ============================================
+# μ (Memory) Operator - Content-Addressable Memory
+# ============================================
+print("=== μ (Memory) Operator ===")
+
+# Store values with semantic keys
+let store1 = μ["neural_weights", [0.1, 0.2, 0.3, 0.4]]
+print("Stored neural_weights:", store1)
+
+let store2 = μ["learning_rate", 0.001]
+print("Stored learning_rate:", store2)
+
+let store3 = μ["model_config", "transformer-base"]
+print("Stored model_config:", store3)
+
+# Recall by exact key
+let recalled = μ["learning_rate"]
+print("Recalled learning_rate:", recalled)
+
+# Recall by similar key (semantic search)
+let similar_recall = μ["learning rate"]  # slightly different spelling
+print("Similar recall:", similar_recall)
+
+print("")
+
+# ============================================
+# σ (Self/Introspection) Operator
+# ============================================
+print("=== σ (Self/Introspection) Operator ===")
+
+# Introspect on a value
+let self_analysis = σ[42]
+print("Self analysis of 42:", self_analysis)
+
+# Introspect on a list
+let list_analysis = σ[[1, 2, 3, 4, 5]]
+print("Self analysis of list:", list_analysis)
+
+# Introspect on a string
+let str_analysis = σ["consciousness"]
+print("Self analysis of string:", str_analysis)
+
+print("")
+
+# ============================================
+# ↓ (Collapse) Operator
+# ============================================
+print("=== ↓ (Collapse) Operator ===")
+
+# Create a quantum superposition with Ψ
+let superposition = Ψ[[0.6, 0.3, 0.1]]
+print("Superposition created:", superposition)
+
+# Collapse to a definite value
+let collapsed = ↓[superposition]
+print("Collapsed state:", collapsed)
+
+# Collapse a regular value (wraps with metadata)
+let scalar_collapse = ↓[3.14159]
+print("Collapsed scalar:", scalar_collapse)
+
+print("")
+
+# ============================================
+# ≈ (Similarity) Operator
+# ============================================
+print("=== ≈ (Similarity) Operator ===")
+
+# Compare two vectors for similarity
+let vec1 = [1.0, 2.0, 3.0]
+let vec2 = [1.1, 2.1, 2.9]
+let similarity = ≈[[vec1, vec2]]
+print("Similarity between vec1 and vec2:", similarity)
+
+# Compare identical values
+let identical = ≈[[[1, 2, 3], [1, 2, 3]]]
+print("Identical vectors similarity:", identical)
+
+# Compare different values
+let different = ≈[[[1, 0, 0], [0, 1, 0]]]
+print("Orthogonal vectors similarity:", different)
+
+print("")
+
+# ============================================
+# ≉ (Dissimilarity) Operator
+# ============================================
+print("=== ≉ (Dissimilarity) Operator ===")
+
+let dissim = ≉[[[1, 2, 3], [4, 5, 6]]]
+print("Dissimilarity result:", dissim)
+
+print("")
+
+# ============================================
+# ∫ (Temporal Integration) Operator
+# ============================================
+print("=== ∫ (Temporal Integration) Operator ===")
+
+# Integrate values over time (accumulate)
+print("Integrating sequence of values...")
+let t1 = ∫[10]
+print("After 10:", t1)
+
+let t2 = ∫[20]
+print("After 20:", t2)
+
+let t3 = ∫[15]
+print("After 15:", t3)
+
+let t4 = ∫[25]
+print("After 25:", t4)
+
+let t5 = ∫[18]
+print("After 18:", t5)
+
+print("")
+
+# ============================================
+# ± (Uncertainty) Operator
+# ============================================
+print("=== ± (Uncertainty) Operator ===")
+
+# Create uncertain value with bounds
+let uncertain1 = ±[100, 5]  # 100 ± 5
+print("Uncertain value 100 ± 5:", uncertain1)
+
+let uncertain2 = ±[0.95, 0.02]  # 95% ± 2%
+print("Probability 0.95 ± 0.02:", uncertain2)
+
+# Collapse uncertainty to concrete value
+let collapsed_uncertain = ↓[uncertain1]
+print("Collapsed uncertain value:", collapsed_uncertain)
+
+print("")
+
+# ============================================
+# Combined Example: AI Learning Loop
+# ============================================
+print("=== Combined Example: AI Learning Loop ===")
+
+# Store initial weights
+μ["weights", [0.5, 0.5, 0.5]]
+
+# Simulate learning iterations
+for i in 0..3 {
+    # Get current weights from memory
+    let current = μ["weights"]
+    print("Iteration", i, "- Current weights:", current)
+
+    # Compute gradient
+    let grad = ∇[[i * 0.1, i * 0.15, i * 0.2]]
+    print("  Gradient:", grad)
+
+    # Integrate over time
+    let temporal = ∫[i * 10]
+    print("  Temporal state:", temporal)
+
+    # Self-introspection
+    let self_state = σ[i]
+    print("  Self awareness:", self_state)
+}
+
+print("")
+print("=== All Extended Consciousness Tests Complete! ===")

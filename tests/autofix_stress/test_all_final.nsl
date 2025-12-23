@@ -1,0 +1,48 @@
+# FINAL COMPREHENSIVE TEST - ALL AUTOFIX FEATURES
+
+# 1. Multi-language keywords + commas (multi-pass)
+fn compute(x, y, z) { return x + y + z }
+fn greet(name) { return "Hello " + name }
+
+# 2. Array and object commas
+let nums = [1, 2, 3, 4, 5]
+let nested = [[1, 2], [3, 4]]
+let obj = { a: 1, b: 2, c: 3 }
+
+# 3. Keyword typos
+fn broken() { return 5 }
+let x = true
+let y = false
+let z = null
+
+# 4. Operator typos
+if a == b { }
+if c != d { }
+
+# 5. Wrong keywords
+let count = 10
+struct Person { }
+let PI = 3.14
+
+# 6. Python-style blocks (single level)
+if score > 90 {
+  print("A")
+} else if score > 80 {
+  print("B")
+} else {
+  print("C")
+}
+
+# 7. Lambda expressions
+fn lambda_36(x, y) { return x + y }
+
+# 8. For/while loops
+for i in range(5) {
+  print(i)
+}
+
+while x > 0 {
+  x = x - 1
+}
+
+print("all tests complete")

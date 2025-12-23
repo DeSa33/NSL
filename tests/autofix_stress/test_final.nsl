@@ -1,0 +1,32 @@
+# FINAL TEST - All Limitations Fixed
+
+# Missing commas in arrays
+let nums = [1 2 3 4 5]
+let strs = ["a" "b" "c"]
+
+# Missing commas in objects  
+let obj = { name: "test" age: 25 }
+
+# Missing commas in params
+fn add(x y) {
+  return x + y
+}
+
+# Keyword typos
+fucntion test() { retrun 5 }
+
+# Boolean/null typos
+let a = ture
+let b = flase
+let c = nul
+
+# Wrong operators
+if x === 5 { print("eq") }
+
+# Wrong keywords
+var count = 10
+class Person { }
+interface Test { }
+lambda x: x * 2
+
+print("done")

@@ -1,0 +1,39 @@
+# Test struct implementation
+
+struct Point {
+    x: number,
+    y: number
+}
+
+struct Person {
+    name: string,
+    age: int
+}
+
+fn main() {
+    print("Testing struct implementation:")
+
+    # Create a Point struct
+    let p = Point { x: 10.5, y: 20.3 }
+
+    print("Point created!")
+    print("p.x:")
+    print(p.x)
+    print("p.y:")
+    print(p.y)
+
+    # Create a Person struct
+    let person = Person { name: "Claude", age: 2 }
+    print("Person created!")
+    print("person.name:")
+    print(person.name)
+    print("person.age:")
+    print(person.age)
+
+    # Test arithmetic with struct fields
+    let sum = p.x + p.y
+    print("Sum of p.x + p.y:")
+    print(sum)
+
+    print("Done!")
+}
