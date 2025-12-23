@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>NSL.GPU</RootNamespace>
+    <AssemblyName>NSL.GPU</AssemblyName>
+    <Description>GPU acceleration for NSL using ILGPU - CUDA and OpenCL support for tensor operations</Description>
+    <Authors>NSL Team</Authors>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ILGPU" Version="1.5.3" />
+    <PackageReference Include="ILGPU.Algorithms" Version="1.5.3" />
+  </ItemGroup>
+
+  <!-- NOTE: NSL.GPU is now standalone - no circular dependencies -->
+  <!-- NSL.Tensor references NSL.GPU (one-way dependency) -->
+  <!-- Tensor<->GpuTensor conversion happens via float[] arrays -->
+
+</Project>

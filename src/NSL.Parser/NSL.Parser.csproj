@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>NSL.Parser</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Legion AI</Authors>
+    <Description>NeuroSymbolic Language (NSL) Parser - Converts tokens to AST</Description>
+    <PackageTags>nsl;neurosymbolic;consciousness;parser;ast</PackageTags>
+    <RepositoryUrl>https://github.com/legion-ai/nsl-parser</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NSL.Core\NSL.Core.csproj" />
+  </ItemGroup>
+
+</Project>
